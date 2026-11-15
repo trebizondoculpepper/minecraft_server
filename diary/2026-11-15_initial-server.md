@@ -10,3 +10,9 @@ inactivity shutdown. London is provisional. Initial resources are deliberately
 provisioned separately from repeat deployments. Deployment awaits confirmed Fly
 authentication and the whitelist usernames. Actual gameplay, clean shutdown,
 wake-up, and recovery still need verification on the deployed machine.
+
+The owner subsequently requested an initially open server, with a whitelist to
+be enabled after friends have joined. Disabled whitelist enforcement and removed
+the workflow's mandatory username check. Minecraft account authentication stays
+enabled. Documented explicit username configuration and redeployment to lock down
+access later.

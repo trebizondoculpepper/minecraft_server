@@ -32,11 +32,21 @@ secret, without printing it:
 
 ```sh
 fly tokens create deploy --app trebizondoculpepper-minecraft --expiry 720h | gh secret set FLY_API_TOKEN
-gh variable set MINECRAFT_WHITELIST --body 'PlayerOne,PlayerTwo'
 ```
 
-Use real Java Edition usernames. Authentication and whitelist enforcement are
-enabled. Renew the token before its 30-day expiry.
+Minecraft account authentication is enabled. The server initially allows any
+authenticated Java player to join, up to the six-player limit. The whitelist is
+disabled at the owner's request. Renew the token before its 30-day expiry.
+
+To restrict access later, set the allowed Java usernames:
+
+```sh
+gh variable set MINECRAFT_WHITELIST --body 'salimfadhley,PlayerTwo'
+```
+
+Then change `ENABLE_WHITELIST` and `ENFORCE_WHITELIST` in `fly.toml` to `"TRUE"`,
+push that change, and run the deployment workflow. Friends connecting does not
+automatically add them to the whitelist; include every allowed username.
 
 Push the configuration to GitHub, then run **Actions → Deploy Minecraft → Run
 workflow**, or `gh workflow run deploy.yml`. Deployments are manual and serialized;
