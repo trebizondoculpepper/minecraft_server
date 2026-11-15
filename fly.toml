@@ -1,0 +1,47 @@
+app = "trebizondoculpepper-minecraft"
+primary_region = "lhr"
+kill_signal = "SIGTERM"
+kill_timeout = "120s"
+
+[build]
+  image = "itzg/minecraft-server:java25@sha256:52a530ef9f3af25c0536c21e5b7c6bad7c1e1e7777fc186c4196c3d1f7635113"
+
+[env]
+  EULA = "TRUE"
+  TYPE = "VANILLA"
+  VERSION = "26.3"
+  MEMORY = "3G"
+  MAX_PLAYERS = "6"
+  VIEW_DISTANCE = "8"
+  SIMULATION_DISTANCE = "6"
+  ONLINE_MODE = "TRUE"
+  ENABLE_WHITELIST = "TRUE"
+  ENFORCE_WHITELIST = "TRUE"
+  ENABLE_AUTOSTOP = "TRUE"
+  AUTOSTOP_TIMEOUT_EST = "600"
+  AUTOSTOP_TIMEOUT_INIT = "600"
+  AUTOSTOP_PERIOD = "10"
+  MOTD = "Friends vanilla Minecraft server"
+
+[[mounts]]
+  source = "minecraft_data"
+  destination = "/data"
+
+[[services]]
+  protocol = "tcp"
+  internal_port = 25565
+  auto_start_machines = true
+  auto_stop_machines = "off"
+  min_machines_running = 0
+
+  [[services.ports]]
+    port = 25565
+
+[[vm]]
+  cpu_kind = "shared"
+  cpus = 2
+  memory = "4gb"
+
+[[restart]]
+  policy = "on-failure"
+  retries = 3

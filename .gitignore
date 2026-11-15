@@ -1,0 +1,5 @@
+.idea/
+.firecrawl/
+agent-inbox.toml
+.env
+*.log
